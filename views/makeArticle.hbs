@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en">
+  <![endif]-->
+  <!--[if gt IE 8]>
+  <!-->
+  <html class="no-js" lang="en">
+    <!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link rel="stylesheet" href="/css/normalize.css" />
+    <link rel="stylesheet" href="/css/foundation.min.css" />
+    <link rel="stylesheet" href="/css/app.css" />
+    <script src="/js/vendor/jquery.js"></script>
+    <script type="text/x-handlebars-template"></script>
+    <script type="text/javascript" src="/js/lib/underscore-min.js"></script>
+    <script type="text/javascript" src="/js/lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/lib/handlebars.runtime.js"></script>
+    <script type="text/javascript" src="http://geoapi.heartrails.com/api/geoapi.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        //市町村検索
+        //初期設定
+        var area_pref = $('#area_pref'); //都道府県が入るselect
+        var area_city = $('#area_city'); //市町村が入るselect
+
+        //最初に都道府県を読み込む
+        $.getJSON('http://search.olp.yahooapis.jp/OpenLocalPlatform/V1/addressDirectory?callback=?',
+            {
+                appid: '{{apiid}}',
+                ac: 'JP',
+                output: 'json'
+            },
+            function (json){
+                area_pref.children().not(':first').remove();//一つ目のoption(選択してください）のみ残して削除
+                $.each(json.Feature[0].Property.AddressDirectory,function (key,value){
+                    var txt = String(this.Name);
+                    var code = String(this.AreaCode);
+                    area_pref.append('<option value="'+code+'">'+txt+"</option>");
+                });
+        });
+
+        //都道府県から市町村を検索
+        area_pref.on('change',function(){
+            $.getJSON('http://search.olp.yahooapis.jp/OpenLocalPlatform/V1/addressDirectory?callback=?',
+            {
+                appid: '{{apiid}}',
+                ac: area_pref.val(),
+                output: 'json'
+            },
+            function (json){
+                area_city.children().not(':first').remove();//一つ目のoption(選択してください）のみ残して削除
+                $.each(json.Feature[0].Property.AddressDirectory,function (key,value){
+                    var txt = String(this.Name);
+                    var code = String(this.AreaCode);
+                    area_city.append('<option value="'+code+'">'+txt+"</option>");
+                });
+            });
+        });
+    });
+    </script>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="top-bar" data-topbar>
+    <ul class="title-area">
+      <!-- Title Area -->
+      <li class="name">
+        <h1>
+          <a href="#">
+            Top Bar Title
+          </a>
+        </h1>
+      </li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
+
+    <section class="top-bar-section">
+      <!-- Right Nav Section -->
+      <ul class="right">
+        <li class="divider"></li>
+        <li class="has-dropdown">
+          <a href="#">Main Item 1</a>
+          <ul class="dropdown">
+            <li><label>Section Name</label></li>
+            <li class="has-dropdown">
+              <a href="#" class="">Has Dropdown, Level 1</a>
+              <ul class="dropdown">
+                <li><a href="#">Dropdown Options</a></li>
+                <li><a href="#">Dropdown Options</a></li>
+                <li><a href="#">Level 2</a></li>
+                <li><a href="#">Subdropdown Option</a></li>
+                <li><a href="#">Subdropdown Option</a></li>
+                <li><a href="#">Subdropdown Option</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Dropdown Option</a></li>
+            <li><a href="#">Dropdown Option</a></li>
+            <li class="divider"></li>
+            <li><label>Section Name</label></li>
+            <li><a href="#">Dropdown Option</a></li>
+            <li><a href="#">Dropdown Option</a></li>
+            <li><a href="#">Dropdown Option</a></li>
+            <li class="divider"></li>
+            <li><a href="#">See all →</a></li>
+          </ul>
+        </li>
+        <li class="divider"></li>
+        <li><a href="#">Main Item 2</a></li>
+        <li class="divider"></li>
+        <li class="has-dropdown">
+          <a href="#">Main Item 3</a>
+          <ul class="dropdown">
+            <li><a href="#">Dropdown Option</a></li>
+            <li><a href="#">Dropdown Option</a></li>
+            <li><a href="#">Dropdown Option</a></li>
+            <li class="divider"></li>
+            <li><a href="#">See all →</a></li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </nav>
+
+  <!-- End Top Bar -->
+
+
+  <!-- Main Page Content and Sidebar -->
+
+  <div class="row">
+
+    <!-- Contact Details -->
+    <div class="large-12 columns">
+
+      <h3>さあ記事を作りましょう!</h3>
+
+      <div class="section-container tabs" data-section>
+        <section class="section">
+          <h5 class="title"><a href="#panel1">ロケーション</a></h5>
+          <div class="content" data-slug="panel1">
+            <form method="post" enctype="multipart/form-data" action="/makeArticle">
+              <div class="row collapse">
+                <div class="large-2 columns">
+                  <label class="inline">タグ</label>
+                </div>
+                <div class="large-10 columns">
+                  {{#each tags}}
+                    <label for="checkbox" class="left inline">
+                        <input type="checkbox" name="tag" id="tags" value="{{tag_no}}" />
+                        {{name}}
+                    </label>
+                  {{/each}}
+                </div>
+              </div>
+              <div class="row collapse">
+                <div class="large-2 columns">
+                  <label class="inline">都道府県</label>
+                </div>
+                <div class="large-10 columns">
+                  <select name="prefecture_cd" id="area_pref">
+                    <option value="">都道府県を選択してください</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row collapse">
+                <div class="large-2 columns">
+                  <label class="inline">市区町村</label>
+                </div>
+                <div class="large-10 columns">
+                  <select name="city_cd" id="area_city">
+                    <option value="">市町村を選択してください</option>
+                  </select>
+                </div>
+              </div>
+              <br />
+              <div class="row collapse">
+                <div class="large-2 columns">
+                  <label class="inline">名前</label>
+                </div>
+                <div class="large-10 columns">
+                  <input type="text" name="name" id="yourName">
+                </div>
+              </div>
+              <div class="row collapse">
+                <div class="large-2 columns">
+                  <label class="inline">タイトル</label>
+                </div>
+                <div class="large-10 columns">
+                  <input type="text" name="title" id="yourEmail">
+                </div>
+              </div>
+              <div class="row collapse">
+                <div class="large-2 columns">
+                  <label class="inline">メイン写真</label>
+                </div>
+                <div class="large-10 columns">
+                  <input type="file" name="file1" id="imageFile" data-type='image' data-max-size='2mb' />
+                </div>
+              </div>
+<!--               <div class="row collapse">
+                <div class="large-2 columns">
+                  <label class="inline">YOUTUBE埋め込みコード</label>
+                </div>
+                <div class="large-10 columns">
+                  <input type="text" name="embedcode" id="imagefile">
+                </div>
+              </div> -->
+              <div class="row collapse">
+                <div class="large-2 columns">
+                  <label class="inline">本文</label>
+                </div>
+                <div class="large-10 columns">
+                  <textarea name="comment"  style="height: 350px" rows="30"></textarea>
+                </div>
+              </div>
+              <label>さあ登録しよう！</label>
+              <input type="hidden" id="csrf" name="_csrf" value="{{token}}">
+              <input type="submit" class="radius button" value="送信" />
+            </form>
+          </div>
+        </section>
+      </div>
+    </div>
+
+
+    <!-- End Contact Details -->
+
+    <!-- End Sidebar -->
+  </div>
+
+  <!-- End Main Content and Sidebar -->
+
+
+  <!-- Footer -->
+
+  <footer class="row">
+    <div class="large-12 columns">
+      <hr />
+      <div class="row">
+        <div class="large-6 columns">
+          <p>© Copyright no one at all. Go to town.</p>
+        </div>
+        <div class="large-6 columns">
+          <ul class="inline-list right">
+            <li><a href="#">Link 1</a></li>
+            <li><a href="#">Link 2</a></li>
+            <li><a href="#">Link 3</a></li>
+            <li><a href="#">Link 4</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- End Footer -->
+
+
+
+  <!-- Map Modal -->
+
+  <div class="reveal-modal" id="mapModal">
+    <h4>Where We Are</h4>
+    <p><img src="http://placehold.it/800x600" /></p>
+
+    <!-- Any anchor with this class will close the modal. This also inherits certain styles, which can be overriden. -->
+    <a href="#" class="close-reveal-modal">×</a>
+  </div>
+
+
+    <!-- body content here -->
+
+  <!-- foundation5プラグイン -->
+  <script src="/js/foundation.min.js"></script>
+  <script src="/js/vendor/modernizr.js"></script>
+  <script src="/js/vendor/fastclick.js"></script>
+  <script>$(document).foundation();</script>
+</body>
+</html>

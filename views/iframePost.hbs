@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en">
+  <![endif]-->
+  <!--[if gt IE 8]>
+  <!-->
+  <html class="no-js" lang="en">
+    <!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>TOP</title>
+    <link rel="stylesheet" href="/css/normalize.css" />
+    <link rel="stylesheet" href="/css/foundation.min.css" />
+    <link rel="stylesheet" href="/css/app.css" />
+    <link rel="stylesheet" href="/css/webticker.css"  media="screen"/>
+    <link rel="stylesheet" href="/css/li-scroller.css"/>
+    <!-- ページスライドメニュー用のCSS -->
+    <link rel="stylesheet" type="text/css" href="/css/jquery.pageslide.css" />
+
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/lib/underscore-min.js"></script>
+    <script type="text/javascript" src="/js/lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/lib/handlebars.runtime.js"></script>
+    <script type="text/javascript" src="/js/vendor/pagetop.fade.js"></script>
+    <script type="text/javascript" src="/js/vendor/custom.modernizr.js"></script>
+    <script type="text/javascript" src="/js/vendor/jquery.li-scroller.1.0.js"></script>
+    <script type="text/javascript" src="/js/vendor/jquery.webticker.min.js"></script>
+    <script type="text/javascript" src="/js/vendor/jquery.bpopup.min.js"></script>
+
+
+</head>
+<body>
+<div class="row">
+<div class="large-12 columns">
+{{#with post}}
+<article>
+    <aside id="q{{post_id}}" style="padding-top: 40px; margin-top: -40px;">
+          <div id="reply" >
+          <div>
+            <div id="reply_header">
+              <input type="checkbox" name="deletepost" value="{{thread_id}}_{{_id}}">
+              <img src="/img/flags/{{country_code}}.png" alt="" id="country_flag" title="{{country}}">
+              ({{city}}) {{name}} {{create_date}} No. <a href="#" id="m{{post_id}}">{{post_id}}</a>
+              {{#if send_message}}
+                <span class="entypo-right-thin"></span> {{sendMessageHelper category_id thread_id send_message}}
+              {{/if}}
+              <div class="right">
+                {{isVideo embedcode mediatype post_id}}<!--
+                <span id="g{{post_id}}">{{good}}</span>
+                <img src="/img/good2.png" alt="" id="good{{post_id}}">
+                <img src="/img/bad2.png" alt="" id="bad{{post_id}}">
+                <span id="b{{post_id}}">{{bad}}</span>-->
+              </div>
+            </div>
+            {{#if receive_message}}
+            <div id="reply_header_reply">
+              返信： {{sendMessageHelper category_id thread_id receive_message}}
+            </div>
+            {{/if}}
+            {{#if filename}}
+              {{#if filecaption}}
+                <span class="filecaption">{{filename}} {{filecaption}}</span>
+              {{/if}}
+              <a id="reply_image" href="/uploads/fullsize/{{filename}}" target="_blank"><img src="/uploads/thumbs/{{filenameforimg}}" alt=""></a>
+            {{/if}}
+            <p>
+              {{{mediaSelect embedcode mediatype post_id}}}
+              {{breaklines comment}}
+            </p>
+          </div>
+          </div>
+        </aside>
+</article>
+<!-- fancybox内サブミット後この画面を閉じて親画面を反映 -->
+<form target="_top" method="post" id="banPost" action="/kanriverifi/ban">
+<div class="row" id="makethread">
+  <div class="large-2 columns">
+    <label>追放</label>
+    <div class="switch tiny round">
+      <input id="switch_off" name="questionnaire" type="radio" value="0" checked>
+      <label for="switch_off" onclick="">Off</label>
+      <input id="switch_on" name="questionnaire" type="radio" value="1">
+      <label for="switch_on" onclick="">On</label>
+      <span></span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-8 columns">
+      <div id="show_questionnaire" class="invisible">
+        <fieldset>
+          <legend class="subheader">
+            追放フィールド
+            <span>~ BAN! BAN! BAN! ~</span>
+          </legend>
+          <div class="large-6 columns">
+            <label for="customDropdown1">
+              追放理由
+              <span>~ reason ~</span>
+            </label>
+            <select name="bannedtype" id="bannedtypeId" class="medium">
+              <option DISABLED>追放追放追放</option>
+              <option name="troll" value="1">荒らし</option>
+              <option name="expliciteImageUpload" value="2">有害な画像のアップロード</option>
+              <option name="slander" value="3">誹謗／中傷／名誉毀損</option>
+              <option name="spam" value="4">spam/広告／ステルスマーケティング</option>
+              <option name="wrongBoard" value="5">板違い</option>
+              <option name="meetUp" value="6">出会い勧誘／出会い目的</option>
+            </select>
+          </div>
+          <div class="large-6 columns">
+            <label for="customDropdown1">
+              追放期間
+              <span>~ term ~</span>
+            </label>
+            <select name="term" id="termId" class="medium">
+              <option DISABLED>追放期間</option>
+              <option name="one" value="1">1日</option>
+              <option name="three" value="2">3日</option>
+              <option name="week" value="3">7日</option>
+              <option name="years" value="4">5年</option>
+            </select>
+          </div>
+          <div class="row">
+            <div class="small-2 columns">
+              <input type="hidden" name="post" value="yes"/>
+              <input type="hidden" name="postIdForPost" value="{{post_id}}"/>
+              <input type="hidden" name="ipaddress" value="{{ipaddress}}"/>
+              <input type="hidden" name="country" value="{{country}}"/>
+              <input type="hidden" name="city" value="{{city}}"/>
+              <input type="hidden" name="postId" value="{{thread_id}}_{{_id}}" />
+              <input type="hidden" name="categoryId" value="{{category_id}}" />
+              <input type="hidden" name="bannedReason" id="bannedReasonId" value=""/>
+              <input type="submit" id="banButton" class="button tiny round" value="追放" />
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+{{/with}}
+</div>
+</div>
+
+    <!-- Footer -->
+
+
+    <!-- body content here -->
+    <script>
+  document.write('<script src=' +
+  ('__proto__' in {} ? '/js/vendor/zepto' : '/js/vendor/jquery') +
+  '.js><\/script>')</script>
+
+  <!-- foundation4プラグイン -->
+  <script src="/js/foundation.min.js"></script>
+  <!-- footer固定用プラグイン -->
+  <script src="/js/vendor/jquery.stickyFooter.js"></script>
+  <!-- side menu を出すためのプラグイン -->
+  <script src="/js/vendor/jquery.pageslide.min.js"></script>
+  <script type="text/javascript">
+  $(function(){
+    $("#banButton").click(function() {
+      parent.$.fancybox.close();
+      return true;
+    });
+    $(".switch").click(function(){
+      if ($('input[id=switch_on]:checked').val() == 1) {
+        $("#show_questionnaire").slideDown();
+      } else {
+        $("#show_questionnaire").slideUp();
+      }
+    });
+    $('#bannedtypeId').change(function(){
+      var combo_option = $('select[name="bannedtype"] option:selected');
+      var selected_text = combo_option.text();
+      $('#bannedReasonId').val(selected_text);
+    });
+    $('#bannedReasonId').val('荒らし');
+  });
+  </script><!--
+  <script type="text/javascript">
+    this.top.location !== this.location && (this.top.location = this.location);
+  </script>-->
+  <script>$(document).foundation();</script>
+</body>
+</html>

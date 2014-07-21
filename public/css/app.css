@@ -1,0 +1,177 @@
+#region_img img{
+	width: auto;
+	height: 200px;
+}
+
+#prefectures img {
+	height: 300px;
+	width: auto;
+}
+.columns {
+	border: 0px solid green;
+}
+header {
+	text-align: center;
+}
+
+body {
+	background: white;
+}
+
+
+
+/* navigation challenge */
+.top-bar {
+    background: #ffa01f;
+}
+.top-bar-section li a:not(.button) {
+    background: #ffa01f;
+}
+.top-bar-section ul li.active a {
+    background: #FFBB5C;
+}
+.top-bar-section li a:hover:not(.button) {
+	background: #FFBB5C;
+}
+
+/* nav bar on smaller screens */
+.top-bar.expanded .title-area {
+    background: #ffa01f;
+}
+.top-bar-section ul {
+    background: #ffa01f;
+}
+
+#lean_overlay{
+  position: fixed; z-index:100;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  background: #000;
+  display: none;
+}
+#hiddenform {
+	display: none;
+}
+#body_green {
+	background-color: #F3F9E8;
+}
+#body_blue {
+	background-color: #EBF7FA;
+}
+#body_blue2 {
+	background-color: #f2f8ff;
+}
+#dialog-form{
+  background: none repeat scroll 0 0 #FFFFFF;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
+  display: none;
+  padding: 30px;
+  width: 780px;
+ }
+.modal_close{
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: block;
+  width: 14px;
+  height: 14px;
+  background: url(../img/modal_close.png);
+  z-index: 2;
+}
+
+ul.center {
+  margin: 0;  /* 余分なマージンを消去 */
+  padding: 0; /* 余分なパディングを消去 */
+  text-align: center; /* 中央寄せ */
+}
+
+ul.center li {
+  list-style-type: none; /*リストのマーカーを消去 */
+  /*display: inline-block; 横並びに */
+  margin: 0 10px 0 0;
+}
+
+/* IE6 */
+ul.center li {
+  _display: inline; /* IE6がdisplay: inline-block;に対応していないので */
+}
+
+/* IE7 */
+*:first-child+html ul.center li {
+  display: inline; /* IE7がdisplay: inline-block;に対応していないので */
+}
+
+/* SuperBox */
+.superbox-list {
+display:inline-block;
+*display:inline;
+zoom:1;
+width:12.5%;
+}
+.superbox-img {
+max-width:100%;
+width:100%;
+cursor:pointer;
+}
+.superbox-show {
+text-align:center;
+position:relative;
+background:#fff;/*拡大写真の背景色*/
+box-shadow:inset 0 1px 5px #C3C3C3;
+-webkit-box-shadow:inset 0 1px 5px #C3C3C3;
+-moz-box-shadow:inset 0 1px 5px #C3C3C3;
+width:100%;
+float:left;
+padding:25px;
+display:none;
+}
+.superbox-current-img {
+max-width:100%;
+box-shadow:0 1px 4px #C3C3C3;
+border:1px solid #fff;
+}
+.superbox-img:hover {
+opacity:0.8;
+}
+.superbox-close {
+opacity:0.7;
+cursor:pointer;
+position:absolute;
+top:25px;
+right:25px;
+background:url(../images/close.png) no-repeat center center;/*Closeボタン背景*/
+width:67px;
+height:16px;
+}
+.superbox-close:hover {
+opacity:1;
+}
+@media only screen and (min-width: 320px) {
+/* フッターの設定 */
+footer {
+	color: #ffffff;
+	font-size: 12px;
+  	background-color:#6699CC;
+}
+}
+@media only screen and (min-width: 486px) {
+/* フッターの設定 */
+footer {
+	color: #ffffff;
+	font-size: 12px;
+  	background-color:#6699CC;
+}
+}
+@media only screen and (min-width: 768px) {
+}
+@media only screen and (min-width: 1025px) {
+}
+
+/* フッターの設定 */
+footer {
+	color: #ffffff;
+	font-size: 12px;
+  	background-color:#6699CC;
+}

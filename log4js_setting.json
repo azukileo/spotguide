@@ -1,0 +1,19 @@
+{
+  "appenders": [
+    {
+      "type": "dateFile",
+      "filename": "logs/access.log",
+      "pattern": "-yyyy-MM-dd",
+      "maxLogSize": 20480,
+      "backups": 3,
+      "category": "default"
+    },
+    {
+      "type": "console",
+      "category": "default"
+    }
+  ],
+  "levels": {
+    "default": "DEBUG"
+  }
+}

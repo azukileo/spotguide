@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="en">
+  <![endif]-->
+  <!--[if gt IE 8]>
+  <!-->
+  <html class="no-js" lang="en">
+    <!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link rel="stylesheet" href="/css/normalize.css" />
+    <link rel="stylesheet" href="/css/foundation.min.css" />
+    <link rel="stylesheet" href="/css/app.css" />
+    <script src="/js/vendor/jquery.js"></script>
+    <script type="text/x-handlebars-template"></script>
+    <script type="text/javascript" src="/js/lib/underscore-min.js"></script>
+    <script type="text/javascript" src="/js/lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/lib/handlebars.runtime.js"></script>
+</head>
+<body>
+
+<div class="row">
+    <div class="large-12 columns">
+
+    <!-- Navigation -->
+
+      <div class="row">
+        <div class="large-12 columns">
+
+          <nav class="top-bar" data-topbar>
+            <ul class="title-area">
+              <!-- Title Area -->
+              <li class="name">
+                <h1>
+                  <a href="#">
+                    Top Bar Title
+                  </a>
+                </h1>
+              </li>
+              <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+            </ul>
+
+            <section class="top-bar-section">
+              <!-- Right Nav Section -->
+              <ul class="right">
+                <li class="divider"></li>
+                <li class="has-dropdown">
+                  <a href="#">Main Item 1</a>
+                  <ul class="dropdown">
+                    <li><label>Section Name</label></li>
+                    <li class="has-dropdown">
+                      <a href="#" class="">Has Dropdown, Level 1</a>
+                      <ul class="dropdown">
+                        <li><a href="#">Dropdown Options</a></li>
+                        <li><a href="#">Dropdown Options</a></li>
+                        <li><a href="#">Level 2</a></li>
+                        <li><a href="#">Subdropdown Option</a></li>
+                        <li><a href="#">Subdropdown Option</a></li>
+                        <li><a href="#">Subdropdown Option</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="#">Dropdown Option</a></li>
+                    <li><a href="#">Dropdown Option</a></li>
+                    <li class="divider"></li>
+                    <li><label>Section Name</label></li>
+                    <li><a href="#">Dropdown Option</a></li>
+                    <li><a href="#">Dropdown Option</a></li>
+                    <li><a href="#">Dropdown Option</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">See all →</a></li>
+                  </ul>
+                </li>
+                <li class="divider"></li>
+                <li><a href="#">Main Item 2</a></li>
+                <li class="divider"></li>
+                <li class="has-dropdown">
+                  <a href="#">Main Item 3</a>
+                  <ul class="dropdown">
+                    <li><a href="#">Dropdown Option</a></li>
+                    <li><a href="#">Dropdown Option</a></li>
+                    <li><a href="#">Dropdown Option</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">See all →</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </section>
+          </nav>
+          <!-- End Top Bar -->
+        </div>
+      </div>
+
+    <!-- End Navigation -->
+
+      <div class="row">
+
+  <!-- Side Bar -->
+
+        <div class="large-4 small-12 columns">
+
+          <img src="/img/JapanMap.jpg">
+
+          <div class="hide-for-small panel">
+            <h3>地域別</h3>
+            <h5 class="subheader">記事を作成したい地域を選択してください。
+            </h5>
+          </div>
+
+        </div>
+
+    <!-- End Side Bar -->
+
+
+    <!-- Thumbnails -->
+
+        <div class="large-8 columns">
+          <div class="row">
+
+            <div id="region_img" class="large-4 small-6 columns">
+              <a href="/region/hokkaido"><img src="/img/hokkaido.png"></a>
+              <div class="panel">
+                <h5>北海道</h5>
+                <h6 class="subheader">記事{{hokkaidoCnt}}件</h6>
+              </div>
+            </div>
+
+            <div id="region_img" class="large-4 small-6 columns">
+              <a href="/region/tohoku"><img src="/img/tohoku.png"></a>
+              <div class="panel">
+                <h5>東北地方</h5>
+                <h6 class="subheader">記事{{tohokuCnt}}件</h6>
+              </div>
+            </div>
+
+            <div id="region_img" class="large-4 small-6 columns">
+              <a href="/region/kanto"><img src="/img/kanto.png"></a>
+              <div class="panel">
+                <h5>関東地方</h5>
+                <h6 class="subheader">記事{{kantoCnt}}件</h6>
+              </div>
+            </div>
+
+            <div id="region_img" class="large-4 small-6 columns">
+              <a href="/region/chubu"><img src="/img/chubu.png"></a>
+              <div class="panel">
+                <h5>中部地方</h5>
+                <h6 class="subheader">記事{{chubuCnt}}件</h6>
+              </div>
+            </div>
+
+            <div id="region_img" class="large-4 small-6 columns">
+              <a href="/region/kansai"><img src="/img/kansai.png"></a>
+              <div class="panel">
+                <h5>関西地方</h5>
+                <h6 class="subheader">記事{{kansaiCnt}}件</h6>
+              </div>
+            </div>
+
+            <div id="region_img" class="large-4 small-6 columns">
+              <a href="/region/chugoku"><img src="/img/chugoku.png"></a>
+              <div class="panel">
+                <h5>中国地方</h5>
+                <h6 class="subheader">記事{{chugokuCnt}}件</h6>
+              </div>
+            </div>
+
+            <div id="region_img" class="large-4 small-6 columns">
+              <a href="/region/shikoku"><img src="/img/shikoku.png"></a>
+              <div class="panel">
+                <h5>四国地方</h5>
+                <h6 class="subheader">記事{{shikokuCnt}}件</h6>
+              </div>
+            </div>
+
+            <div id="region_img" class="large-4 small-6 columns">
+              <a href="/region/kyushu"><img src="/img/kyushu.png"></a>
+              <div class="panel">
+                <h5>九州地方</h5>
+                <h6 class="subheader">記事{{kyushuCnt}}件</h6>
+              </div>
+            </div>
+
+          </div>
+
+    <!-- End Thumbnails -->
+
+
+    <!-- Managed By -->
+          <div class="row">
+            <div class="large-12 columns">
+              <div class="panel">
+                <div class="row">
+
+                  <div class="large-2 small-6 columns">
+                    <img src="http://placehold.it/300x300&text=Site Owner">
+                  </div>
+
+                  <div class="large-10 small-6 columns">
+                    <strong>This Site Is Managed By Yukiharu Matsuo<hr/></strong>
+
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+    <!-- End Managed By -->
+
+          </div>
+        </div>
+      </div>
+
+
+    <!-- Footer -->
+
+      <footer class="row">
+        <div class="large-12 columns"><hr />
+          <div class="row">
+
+            <div class="large-6 columns">
+              <p>© Copyright 2014 nsy inc. All Rights Reserved.</p>
+            </div>
+
+            <div class="large-6 columns">
+              <ul class="inline-list right">
+                <li><a href="#">Link 1</a></li>
+                <li><a href="#">Link 2</a></li>
+                <li><a href="#">Link 3</a></li>
+                <li><a href="#">Link 4</a></li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </footer>
+    <!-- End Footer -->
+    </div>
+  </div>
+
+  <!-- foundation5プラグイン -->
+  <script src="/js/foundation.min.js"></script>
+  <script src="/js/vendor/modernizr.js"></script>
+  <script src="/js/vendor/fastclick.js"></script>
+  <script>$(document).foundation();</script>
+</body>
+</html>

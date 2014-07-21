@@ -1,0 +1,45 @@
+{{#each threads}}
+<article>
+  <div id="col">
+    <div id="imageboard_title">{{title}}</div>
+    <div id="imageboard_header">
+      <img src="img/br.png" alt="">
+      Currytibia (OP) {{create_date}} No. {{post_id}}
+      <div class="right">
+        {{good}}
+        <img src="img/good.png" alt="">
+        <img src="img/bad.png" alt="">{{bad}}
+        <img src="img/garbage.png" alt="">
+      </div>
+    </div>
+    <div id="imageboard">
+      <img id="reply_image" src="img/sunflower-thumb.jpg" alt="">
+      <p>
+        {{comment}}
+      </p>
+      {{#if replies.length}}
+        {{#each replies}}
+          <aside>
+            <div id="reply">
+              <div id="reply_header">
+                <img src="img/br.png" alt="">
+                Currytibia (OP) {{create_date}} No. 20774959
+                <div class="right">
+                  {{good}}
+                  <img src="img/good.png" alt="">
+                  <img src="img/bad.png" alt="">{{bad}}
+                  <img src="img/garbage.png" alt="">
+                </div>
+              </div>
+              <img id="reply_image" src="img/forest-thumb.jpg" alt="">
+              <p>
+                {{comment}}
+              </p>
+            </div>
+          </aside>
+        {{/each}}
+      {{/if}}
+    </div>
+  </div>
+</article>
+{{/each}}

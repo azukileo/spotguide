@@ -1,0 +1,11 @@
+#box {
+ background: #333;
+}
+
+#sidemenu h2{
+	color: white;
+	font-weight: bold;
+	border-bottom: 1px dotted #fff;
+	margin-bottom: 20px;
+	padding-bottom:10px;
+}
